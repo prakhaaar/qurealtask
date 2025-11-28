@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+Todo CRUD module built in React (Vite) with TypeScript, React Query, and Ant Design.
+Purpose: demonstrate clean API integration, cache-aware UI updates, and dynamic field handling (Tags).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+⭐ What’s Implemented
 
-Currently, two official plugins are available:
+1. CRUD for Todos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+List todos in an Ant Design table
 
-## React Compiler
+Create / Edit modal with form validation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Delete with confirmation
 
-## Expanding the ESLint configuration
+Toggle completion status via Switch
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. Tag System
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Fetched via useQuery(["tags"])
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+User can create new tags directly inside the Select (mode="tags")
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Automatically checks which tags are new and calls createTag
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Maps created tag IDs back into the Todo payload (taggs: { tags_id: number }[])
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. React Query Integration
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+useQuery for todos + tags
+
+useMutation for create/update/delete
+
+invalidateQueries to keep UI always in sync
+
+Error + success toast messages
+
+4. Code Quality
+
+Fully typed (Todo, Tag, TodoInput)
+
+Separated API layer
+
+Form values pre-filled in Edit mode
+
+Simple and readable modal state management
+
+🛠 Tech Used
+
+React (Vite)
+
+TypeScript
+
+React Query
+
+Ant Design
+
+REST API
